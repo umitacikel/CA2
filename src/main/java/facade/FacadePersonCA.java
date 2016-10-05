@@ -68,6 +68,9 @@ public class FacadePersonCA {
             em.close();
         }
     }
+    
+    
+    
      public PersonCA addPerson(PersonCA p)
     {
         EntityManager em = emf.createEntityManager();

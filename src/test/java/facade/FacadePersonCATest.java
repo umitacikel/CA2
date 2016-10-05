@@ -1,8 +1,10 @@
 package facade;
 
 import Entity.PersonCA;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.persistence.Persistence;
+import org.eclipse.persistence.sdo.helper.extension.SDOUtil;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +24,7 @@ public class FacadePersonCATest {
     
     
      @Before
-    public void setUp()
+    public void addPerson()
     {
         HashMap<String, Object> puproperties = new HashMap();
         puproperties.put("javax.persistence.sql-load-script-source", "scripts/ClearDB.sql");
@@ -37,12 +39,17 @@ public class FacadePersonCATest {
     
     
     @Test
-    public void testGetPerson(){
+    public void testGetAPeroson(){
+        System.out.println("testGetPerson");
+        System.out.println(fp.getPerson(1));
+    }
     
-     System.out.println("getPerson");
-        PersonCA expResult = new PersonCA("Dan", "Mark");
-        PersonCA result = fp.getPerson(1);
-        assertEquals(expResult.getFirstName(), result.getFirstName());
+    @Test
+    public void testGetAll(){
+        System.out.println("get all");
+        ArrayList ae = new ArrayList();
+        ae.add(fp.getPersons());
+        System.out.println(ae);
     }
    
 }
