@@ -8,35 +8,54 @@ package dbstructure;
 import Entity.HobbyCA;
 import Entity.PersonCA;
 import Entity.PhoneCA;
+import facade.FacadeHobbyCA;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author umita
- */
+
 public class Populate {
+         FacadeHobbyCA hb;
+
      public static void main(String[] args)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory( "caunit" );
         EntityManager em = emf.createEntityManager();
-        
+                List<HobbyCA> hobbies = new ArrayList<>();
+
         em.getTransaction().begin();
         
-        PersonCA p = new PersonCA( "Dan", "Mark");
+              
+        
+        
+        hobbies.add(new HobbyCA("asd", "asd"));
+        PersonCA p = new PersonCA( "Dan", "Mark", hobbies);
         em.persist(p);
-        p = new PersonCA("Mark", "Benson");
-        em.persist(p);
-        p = new PersonCA("Ben", "Winter");
+        System.out.println(p);
+        
+        hobbies.add(new HobbyCA("jkl", "li"));
+        p = new PersonCA("Mark", "Benson", hobbies);
         em.persist(p);
         
-        HobbyCA h = new HobbyCA("fodbold", "fodbold");
-        em.persist(h);
-         h = new HobbyCA("håndbold", "håndbold");
-        em.persist(h);
-         h = new HobbyCA("tennis", "tennis");
-        em.persist(h);
+        
+        hobbies.add(new HobbyCA("qqq", "oioi"));
+        p = new PersonCA("Ben", "Winter", hobbies);
+        em.persist(p);
+        
+        
+        
+        
+        
+        
+        
+//        HobbyCA h = new HobbyCA("fodbold", "fodbold");
+//        em.persist(h);
+//         h = new HobbyCA("håndbold", "håndbold");
+//        em.persist(h);
+//         h = new HobbyCA("tennis", "tennis");
+//        em.persist(h);
         
         PhoneCA ph = new PhoneCA("6032243", "mobil");
         em.persist(ph);

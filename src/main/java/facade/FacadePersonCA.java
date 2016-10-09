@@ -3,7 +3,10 @@
 
 package facade;
 
+import Entity.HobbyCA;
 import Entity.PersonCA;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,7 +36,7 @@ public class FacadePersonCA {
     public PersonCA getPerson(int id)
     {
         EntityManager em = emf.createEntityManager();
-
+      
         PersonCA p = null;
         
         try
@@ -48,7 +51,7 @@ public class FacadePersonCA {
             em.close();
         }    
     }
-    
+  
     
     public List<PersonCA> getPersons()
     {
@@ -87,5 +90,35 @@ public class FacadePersonCA {
             em.close();
         }
     }
+     
+    public ArrayList getPersonByInfo(int id){
+     EntityManager em = emf.createEntityManager();
+     
+     PersonCA p;
+     HobbyCA h;
+     ArrayList ar = new ArrayList();
+     
+        try {
+            em.getTransaction().begin();
+            p = em.find(PersonCA.class, id);
+            h = em.find(HobbyCA.class, id);
+            
+            
+            if (p.equals(h)) {
+                ar.add(p);
+                ar.add(h);
+
+                em.getTransaction().commit();
+            }
+        } finally {
+            em.close();
+        }
+        return ar;
+    }
+
+    private HobbyCA HobbyCA() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
+
